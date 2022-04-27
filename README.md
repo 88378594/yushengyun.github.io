@@ -16,3 +16,8 @@ rimraf node_modules
 rimraf package-lock.json
 ## 清除 项目缓存
 npm cache clear --force
+
+## 完成以上步骤再执行初始化
+npm install
+## 运行项目
+npm run dev
