@@ -1,0 +1,86 @@
+[v-cloak]{
+            display: none;
+        }
+        body{
+            /*background-color: #32475e;*/
+            color: white;
+        }
+        .div{
+            width: 85%;
+            margin: 0 auto;
+            transition: 0.8s;
+            text-align: center;
+        }
+        .div span{
+            float: left;
+            margin-top: 0.07rem;
+            margin-left: 0.8rem;
+            color: #b4d6ff;
+            
+        }
+        input{
+            width: 93.5%;
+            height: 2.1rem;
+            width: 96.5%;
+            height: 1.6rem;
+            text-align: center;
+            background: rgb(215 226 231);
+            margin-top: 0.5rem;
+            border-radius: 2rem;
+            font-size: 0.5rem!important;
+            align-items: center;
+            transition: 0.8s;
+            border-style: none;
+            outline: none;
+        }
+        input::placeholder {
+            font-size: 0.4rem;
+            font-weight: 700;
+            color: rgb(150, 150, 150);
+        }
+        .button{
+            width: 2.2rem;
+            height: 2.2rem;
+            color: rgb(255 255 255 / 92%);
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            justify-content: center;
+            transition: 0.8s;
+            background-color: rgb(255 255 255 / 53%);
+            border-radius: 3rem;
+            margin: 0.4rem auto;
+        }
+        .bottom_plus{
+            background-color: rgb(61 120 183 / 84%) !important;
+        }
+        .bottom{
+            width: 85%;
+            position: fixed;
+            bottom: 0.5rem;
+            font-size: 0.35rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        h1{
+            text-align: center !important;
+            font-weight: none !important;
+            font-size: 1.5rem !important;
+            transition: 0.8s !important;
+        }
+        h2{
+            transition: 0.8s;
+        }
+        table{
+            width: 100%;
+                transition: 0.8s;
+        }
+        a{
+            color: white;
+                transition: 0.8s;
+        }
+        span{
+            color: red;
+            transition: 0.8s;
+            font-size: 11px;
+        }
