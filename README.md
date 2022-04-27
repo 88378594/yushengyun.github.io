@@ -1,21 +1,18 @@
 # semo
 
-> A Vue.js project
+>基于vue 开发的一个壁纸项目
 
-## Build Setup
-
-``` bash
-# install dependencies
+## 运行步骤
+## 项目初始化 安装依赖
 npm install
-
-# serve with hot reload at localhost:8080
+## 运行项目
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 运行报错则执行
+## 安装 rimraf
+npm install rimraf -g
+## 删除 node_modules以及package-lock.json
+rimraf node_modules
+rimraf package-lock.json
+## 清除 项目缓存
+npm cache clear --force
