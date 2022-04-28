@@ -1,23 +1,37 @@
 <template>
   <div id="app">
         <router-view class="app-view"/>
-    <lg-preview></lg-preview>
+    <!-- <lg-preview></lg-preview> -->
+    
   </div>
 </template>
 
 <script>
 import '@/assets/css/fakeloader.css'
-import '@/assets/css/logReg.css'
 import '@/assets/js/jquery.min.js'
 import '@/assets/js/fakeloader.min.js'
 export default {
   name: 'App',
   components: {
+  },
+  methods:{
+     
   }
 }
 </script>
 
 <style>
+.backTop{
+  position: fixed;
+  bottom: 2rem;
+  right: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #4f5f70;
+  text-align: center;
+  border-radius: 0.2rem;
+  line-height: 1rem;
+}
 #nprogress .bar { background: #536f91 !important;}
 html,body{
   background-color: #39434f;

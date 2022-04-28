@@ -8,13 +8,13 @@ import 'swiper/dist/css/swiper.min.css'
 import 'swiper/dist/js/swiper.min'
 import { Spinner } from 'mint-ui';
 
-
-
 //组件
 import Mint from 'mint-ui';
 import { Toast } from 'mint-ui';
 import vuePicturePreview from 'vue-picture-preview'
-
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+Vue.use(Viewer)
 Vue.use(vuePicturePreview);
 Vue.use(Mint);
 Vue.config.productionTip = false
@@ -29,9 +29,9 @@ new Vue({
 })
 //验证登录
 router.beforeEach((to,from,next)=>{
-  if(to.path=='/')return next();
+  if(to.path=='/login')return next();
   if(to.path=='/reg')return next();
-  const tk=sessionStorage.getItem('userName')
+  const tk=localStorage.getItem('userName')
   if(!tk){
     pxmu.toast({
         msg: '当前未登录', //内容 不能为空
@@ -43,7 +43,7 @@ router.beforeEach((to,from,next)=>{
         type: 'wap', //默认wap样式 可选参数：pc 入参pc时
         status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
     });
-    return next('/')
+    return next('/login')
   }
   // 放行
   next()

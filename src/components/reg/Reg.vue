@@ -15,6 +15,7 @@
             </div>
             </div>
         </div>
+        <!-- 切换页面加载动画 -->
         <div class="fakeloader"></div>
     </div>
 </template>
@@ -60,8 +61,8 @@ export default {
                                 type: 'wap', //默认wap样式 可选参数：pc 入参pc时
                                 status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
                             });
-                            sessionStorage.setItem("userName",this.userList.userName)
-                            this.$router.push({path:"/index"});
+                            localStorage.setItem("userName",this.userList.userName)
+                            this.$router.push({path:"/"});
                              this.userList={
                                 userName:'',
                                 passWord:''
@@ -100,6 +101,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style src="@/assets/css/logReg.css" scoped>
 
 </style>

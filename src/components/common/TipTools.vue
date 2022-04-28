@@ -6,7 +6,7 @@
     <!-- <i style="margin-right: 0.5rem;" class="iconfont icon-xiazai"></i> -->
     <span class="tips_love" @click="loveIt()">
       <i class="iconfont icon-jushoucang"  v-show="!pic_info.show"></i>
-      <i class="iconfont icon-daohangshoucangyishoucang"  v-show="pic_info.show"></i>
+      <i style="color:#ff0000db" class="iconfont icon-daohangshoucangyishoucang"  v-show="pic_info.show"></i>
     </span>
   </p>
 </div>
@@ -28,65 +28,80 @@ export default {
   },
   methods : {
     loveIt(){
-      
-      if (!this.pic_info.show){
-        //收藏
-        let data = JSON.parse(localStorage.love);
-        let obj = {
-          imgId : this.pic_info.imgId,
-          imgName : this.pic_info.imgName,
-          show : true
-        }
-        data.push(obj);
-        let params={
-           imgId : this.pic_info.imgId,
-           imgName : this.pic_info.imgName,
-           userId : sessionStorage.getItem("userId")
-        }
-        req.post("/addLove",params).then((res) => {
-            console.log(res);
-        })
-        localStorage.love = JSON.stringify(data);
-        pxmu.success({
-            msg: '收藏成功', //loading信息 为空时不显示文本
-            time: 600, //停留时间 
-            bg: 'rgba(0, 0, 0, 0.65)', //背景色
-            color: '#fff', //文字颜色
-            animation: 'fade', //动画名 详见动画文档
-            close: true, // 自动关闭 为false时可在业务完成后调用 pxmu.closeload();手动关闭
-            inscroll: false, //模态 不可点击和滚动
-            inscrollbg : 'rgba(0, 0, 0, 0.45)',//自定义遮罩层颜色 为空不显示遮罩层
+      const tk = localStorage.getItem("userName");
+      if (!tk) {
+        pxmu.toast({
+          msg: "当前未登录", //内容 不能为空
+          time: 2500, //停留时间 默认2500毫秒
+          bg: "rgba(0, 0, 0, 0.86)", //背景颜色 默认黑色
+          color: "#fff", //文字颜色 默认白色
+          location: "", //居中center 顶部top 底部bottom默认
+          animation: "slidedown", //显示的动画 默认fade 动画支持详见动画文档
+          type: "wap", //默认wap样式 可选参数：pc 入参pc时
+          status: "", //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
         });
+        this.$router.push("/login");
       }else{
-        //取消收藏
-        let data = JSON.parse(localStorage.love);
-        for(let i=0; i<data.length; i++) {
-          if(data[i].imgId == this.pic_info.imgId) {
-            data.splice(i, 1);
-            break;
+            if (!this.pic_info.show){
+            //收藏
+            let data = JSON.parse(localStorage.love);
+            let obj = {
+              imgId : this.pic_info.imgId,
+              imgName : this.pic_info.imgName,
+              show : true
+            }
+            data.push(obj);
+            let params={
+              imgId : this.pic_info.imgId,
+              imgName : this.pic_info.imgName,
+              userId : localStorage.getItem("userId")
+            }
+            req.post("/addLove",params).then((res) => {
+                console.log(res);
+            })
+            localStorage.love = JSON.stringify(data);
+            pxmu.success({
+                msg: '收藏成功', //loading信息 为空时不显示文本
+                time: 600, //停留时间 
+                bg: 'rgba(0, 0, 0, 0.65)', //背景色
+                color: '#fff', //文字颜色
+                animation: 'fade', //动画名 详见动画文档
+                close: true, // 自动关闭 为false时可在业务完成后调用 pxmu.closeload();手动关闭
+                inscroll: false, //模态 不可点击和滚动
+                inscrollbg : 'rgba(0, 0, 0, 0.45)',//自定义遮罩层颜色 为空不显示遮罩层
+            });
+          }else{
+            //取消收藏
+            let data = JSON.parse(localStorage.love);
+            for(let i=0; i<data.length; i++) {
+              if(data[i].imgId == this.pic_info.imgId) {
+                data.splice(i, 1);
+                break;
+              }
+            }
+            let params={
+              imgId : this.pic_info.imgId,
+              imgName : this.pic_info.imgName,
+              userId : localStorage.getItem("userId")
+            }
+            req.post("/delLove",params).then((res) => {
+                console.log(res);
+            })
+            localStorage.love = JSON.stringify(data);
+            pxmu.success({
+                msg: '取消收藏', //loading信息 为空时不显示文本
+                time: 600, //停留时间 
+                bg: 'rgba(0, 0, 0, 0.65)', //背景色
+                color: '#fff', //文字颜色
+                animation: 'fade', //动画名 详见动画文档
+                close: true, // 自动关闭 为false时可在业务完成后调用 pxmu.closeload();手动关闭
+                inscroll: false, //模态 不可点击和滚动
+                inscrollbg : 'rgba(0, 0, 0, 0.45)',//自定义遮罩层颜色 为空不显示遮罩层
+            });
           }
-        }
-        let params={
-           imgId : this.pic_info.imgId,
-           imgName : this.pic_info.imgName,
-           userId : sessionStorage.getItem("userId")
-        }
-        req.post("/delLove",params).then((res) => {
-            console.log(res);
-        })
-        localStorage.love = JSON.stringify(data);
-         pxmu.success({
-            msg: '取消收藏', //loading信息 为空时不显示文本
-            time: 600, //停留时间 
-            bg: 'rgba(0, 0, 0, 0.65)', //背景色
-            color: '#fff', //文字颜色
-            animation: 'fade', //动画名 详见动画文档
-            close: true, // 自动关闭 为false时可在业务完成后调用 pxmu.closeload();手动关闭
-            inscroll: false, //模态 不可点击和滚动
-            inscrollbg : 'rgba(0, 0, 0, 0.45)',//自定义遮罩层颜色 为空不显示遮罩层
-        });
+          this.pic_info.show = !this.pic_info.show;
       }
-      this.pic_info.show = !this.pic_info.show;
+      
     },
   },
 }

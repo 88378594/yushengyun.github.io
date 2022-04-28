@@ -2,9 +2,9 @@
     <div class="about">
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="(item,index) in List" :key="index">
+				<div class="swiper-slide" v-viewer v-for="(item,index) in List" :key="index">
 					<!-- <img :src="'http://106.13.215.188:8080/img/'+item.imgName"> -->
-            		<img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" v-preview="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
+            		<img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
 
 				</div>
 				<!-- <div class="swiper-slide">Slide 2</div>

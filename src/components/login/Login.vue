@@ -13,7 +13,7 @@
                 <router-link to="reg">新用户注册</router-link>
             </div>
         </div>
-      
+      <!-- 切换页面加载动画 -->
         <div class="fakeloader"></div>
     </div>
 </template>
@@ -21,6 +21,7 @@
 
 <script>
 import req from '@/utils/request';
+
 export default {
     name: 'Login',
 
@@ -35,6 +36,12 @@ export default {
     },
 
     mounted() {
+        const tk = localStorage.getItem("userName");
+            if (!tk) {
+            
+            }else{
+                this.$router.push("/");
+            } 
          $(".fakeloader").fakeLoader({
             timeToHide:700,
             bgColor:"#34495e",
@@ -60,9 +67,11 @@ export default {
                             status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
                         });
                     }else{
-                        sessionStorage.setItem("userName",res.data[0].userName)
-                        sessionStorage.setItem("userId",res.data[0].userId)
-                        this.$router.push({path:"/index"});
+                        localStorage.setItem('userName', res.data[0].userName)
+                        localStorage.setItem('userId', res.data[0].userId)
+                        // sessionStorage.setItem("userName",res.data[0].userName)
+                        // sessionStorage.setItem("userId",res.data[0].userId)
+                        this.$router.push({path:"/"});
                     }
                 }
             )
@@ -84,6 +93,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style src="@/assets/css/logReg.css" scoped>
 
 </style>
