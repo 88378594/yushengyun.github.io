@@ -2,8 +2,10 @@
 <div class="tiptools">
   <p class="tips">
     <span class="tips_type"><i class="iconfont icon-tupian"></i></span>
+    <!-- 作者 -->
     <slot name="tips_text"></slot>
     <!-- <i style="margin-right: 0.5rem;" class="iconfont icon-xiazai"></i> -->
+    <!-- 点击收藏 -->
     <span class="tips_love" @click="loveIt()">
       <i class="iconfont icon-jushoucang"  v-show="!pic_info.show"></i>
       <i style="color:#ff0000db" class="iconfont icon-daohangshoucangyishoucang"  v-show="pic_info.show"></i>
@@ -44,6 +46,7 @@ export default {
       }else{
             if (!this.pic_info.show){
             //收藏
+            //读取缓存中的收藏列表
             let data = JSON.parse(localStorage.love);
             let obj = {
               imgId : this.pic_info.imgId,
@@ -51,14 +54,17 @@ export default {
               show : true
             }
             data.push(obj);
+
             let params={
               imgId : this.pic_info.imgId,
               imgName : this.pic_info.imgName,
               userId : localStorage.getItem("userId")
             }
+            //发送请求，请求后端收藏接口
             req.post("/addLove",params).then((res) => {
                 console.log(res);
             })
+            //将已收藏的存入缓存
             localStorage.love = JSON.stringify(data);
             pxmu.success({
                 msg: '收藏成功', //loading信息 为空时不显示文本
@@ -72,6 +78,7 @@ export default {
             });
           }else{
             //取消收藏
+            /**与收藏同理 */
             let data = JSON.parse(localStorage.love);
             for(let i=0; i<data.length; i++) {
               if(data[i].imgId == this.pic_info.imgId) {
@@ -84,9 +91,11 @@ export default {
               imgName : this.pic_info.imgName,
               userId : localStorage.getItem("userId")
             }
+            // 请求后端，取消收藏接口
             req.post("/delLove",params).then((res) => {
                 console.log(res);
             })
+            // 存入缓存
             localStorage.love = JSON.stringify(data);
             pxmu.success({
                 msg: '取消收藏', //loading信息 为空时不显示文本
@@ -99,6 +108,7 @@ export default {
                 inscrollbg : 'rgba(0, 0, 0, 0.45)',//自定义遮罩层颜色 为空不显示遮罩层
             });
           }
+          // 取反，收藏点了就是取消收藏，取消点了就是收藏
           this.pic_info.show = !this.pic_info.show;
       }
       

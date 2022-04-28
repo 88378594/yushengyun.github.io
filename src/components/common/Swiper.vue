@@ -1,6 +1,7 @@
 <template>
     <div class="about">
 		<div class="swiper-container">
+			<!-- 轮播图 -->
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" v-viewer v-for="(item,index) in List" :key="index">
 					<!-- <img :src="'http://106.13.215.188:8080/img/'+item.imgName"> -->

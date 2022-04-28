@@ -51,6 +51,7 @@ export default {
     My,
   },
   mounted() {
+    // 判断登录状态以及获取当前所在页面
     console.log(sessionStorage.getItem("title"));
     if(sessionStorage.getItem("title")==null){
         this.title="首页";
@@ -58,7 +59,6 @@ export default {
         this.title=sessionStorage.getItem("title")
     }
     const tk = localStorage.getItem("userName");
-    console.log(this.title);
     if (!tk) {
       pxmu.toast({
         msg: "当前未登录", //内容 不能为空

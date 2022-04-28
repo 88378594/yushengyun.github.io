@@ -1,5 +1,6 @@
 <template>
     <div class="box">
+        <!-- 搜索框 -->
         <input type="text"  placeholder="搜索喜欢的壁纸、专辑、用户">
     </div>
 </template>
