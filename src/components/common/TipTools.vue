@@ -125,8 +125,8 @@ export default {
   padding-left: 10px;
   padding-right: 10px;
   background-color: #404c59;
-  border-bottom-left-radius: 0.4rem;
-  border-bottom-right-radius: 0.4rem;
+  border-bottom-left-radius: 0.15rem;
+  border-bottom-right-radius: 0.15rem;
   margin-top: -2px;
 }
 span{

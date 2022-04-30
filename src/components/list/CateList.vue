@@ -1,11 +1,7 @@
 <template>
     <div>
         <ul class="wallpaper_list"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
-          <!-- 轮播图组件 -->
-          <Swiper></Swiper>
-          <h2 style="color: #a4b3bd;font-size:0.5rem;font-weight: bold;margin-bottom:0.4rem">精选壁纸</h2>
         <!-- 循环图片列表 -->
-       
           <li v-for="(item,index) in list" v-viewer :key="index">
               <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
@@ -29,25 +25,25 @@
 <script>
 import req from '@/utils/request'
 import TipTools from'@/components/common/TipTools.vue'
-import Swiper from'@/components/common/Swiper.vue'
 export default {
     name: 'List',
     data() {
         return {
             list : [],
             pageNo : 1,
-            pageSize :7,
+            pageSize :9,
             isLoadShow : true,
             loading : false,
             loaded : false,
             backTop: false
         };
     },
+    props:["sortId","sortChildId"],
     components:{
       TipTools,
-      Swiper
     },
     mounted(){
+        console.log(this.sortId,this.sortChildId,"发送参数");
       const tk = localStorage.getItem("userName");
       if (!tk) {
         pxmu.toast({
@@ -95,12 +91,11 @@ export default {
         if (!this.loading){
           this.loading = true;
           setTimeout(() => {
-              req.post("/selectImg",{pageNo:this.pageNo,pageSize:this.pageSize}).then((res) => {
+              req.post("/selectCateImg",{sortId:this.sortId,sortChildId:this.sortChildId,pageNo:this.pageNo,pageSize:this.pageSize}).then((res) => {
               if (res.data.length == 1){
                 this.loaded = true;
                 this.isLoadShow = false;
               }else{
-                // -1是因为后端返回的数据最后一条是总记录条数
                 let length = res.data.length-1;
                 for (let i = 0; i < length; i++) {
                   // 判断缓存中已收藏的图片
@@ -125,10 +120,11 @@ export default {
                 this.pageNo++;
               }
               this.loading = false;
+              console.log(this.loading);
             },(err) => {
               console.log('Load Pic Data Failed',err)
             })
-          }, 1000)
+          }, 500)
         }
       },
     },
@@ -149,17 +145,20 @@ export default {
   line-height: 1rem;
 }
 .wallpaper_list{
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+  /* padding-left: 0.2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  /* padding-right: 0.2rem; */
   text-align: center;
+  justify-content: space-between;
   list-style-type: none;
 }
 
 .wallpaper_list li{
-  width: 100%;
+  width: 32.2%;
   /* transition: 0.5s; */
-  height: 7rem;
-  margin: 0 auto;
+  /* height: 5rem; */
+  /* margin: 0 auto; */
   margin-top: 0.2rem;
 }
 
@@ -167,9 +166,9 @@ export default {
   /* transition: 1s; */
   /* display: block; */
   width: 100%;
-  height: 6rem;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
+  height: 4.5rem;
+  border-top-left-radius: 0.15rem;
+  border-top-right-radius: 0.15rem;
 }
 
 .wallpaper_list_loading {

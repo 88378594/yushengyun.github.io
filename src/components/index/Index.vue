@@ -5,12 +5,12 @@
     <div class="header">
       {{ title }}
     </div>
-    <!-- 首页组件 -->
-    <List v-if="title == '首页'"></List>
-    <!-- 分类组件 -->
-    <Cate v-if="title == '分类'"></Cate>
-    <!-- 我的组件 -->
-    <My v-if="title == '我的'"></My>
+        <!-- 首页组件 -->
+        <List v-if="title == '首页'"></List>
+        <!-- 分类组件 -->
+        <Cate v-if="title == '分类'"></Cate>
+        <!-- 我的组件 -->
+        <My v-if="title == '我的'"></My>
     <!-- 底部 -->
     <div class="bottom">
       <i
@@ -51,6 +51,7 @@ export default {
     My,
   },
   mounted() {
+ 
     // 判断登录状态以及获取当前所在页面
     console.log(sessionStorage.getItem("title"));
     if(sessionStorage.getItem("title")==null){
@@ -85,13 +86,14 @@ export default {
     }
 
     $(".fakeloader").fakeLoader({
-      timeToHide: 1500,
+      timeToHide: 1000,
       bgColor: "#34495e",
       spinner: "spinner3",
     });
   },
   
   methods: {
+    
     switchTo(i) {
       switch (i) {
         case 1:
@@ -113,6 +115,10 @@ export default {
 </script>
 
 <style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 3s;
+}
 .kz {
   position: relative;
   left: 0;

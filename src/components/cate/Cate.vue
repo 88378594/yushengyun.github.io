@@ -7,7 +7,7 @@
           <img style="width:0.7rem" src="../../assets/img/loading.gif" alt="">
         </p>
         <div class="box_cont">
-            <div class="box_nr" v-for="(item,index) in featCateList" :key="index">
+            <div class="box_nr" v-for="(item,index) in featCateList" :key="index" @click="selectFeatList()">
                 <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
                 <p>
                     {{item.featCateName}}
@@ -17,7 +17,7 @@
         
          <p class="cate_font">更多分类</p>
          <div class="box_contx">
-            <div class="box_nr" v-for="(item,index) in cateList" :key="index">
+            <div class="box_nr" v-for="(item,index) in cateList" :key="index" @click="selectCateChildList(item.cateId)" >
                  <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
                 <p>
                     {{item.cateName}}
@@ -65,6 +65,22 @@ export default {
         Search
     },
     methods: {
+        selectFeatList(){
+            pxmu.toast({
+                msg: "敬请期待...", //内容 不能为空
+                time: 2500, //停留时间 默认2500毫秒
+                bg: "rgba(0, 0, 0, 0.86)", //背景颜色 默认黑色
+                color: "#fff", //文字颜色 默认白色
+                location: "", //居中center 顶部top 底部bottom默认
+                animation: "slidedown", //显示的动画 默认fade 动画支持详见动画文档
+                type: "wap", //默认wap样式 可选参数：pc 入参pc时
+                status: "", //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
+            });
+        },
+        selectCateChildList(cateId){
+            this.$router.push({name:'CateChild',params:{id:cateId}});
+            console.log(cateId);
+        },
         //查询更多分类
         selectCateList(){
             setTimeout(()=>{

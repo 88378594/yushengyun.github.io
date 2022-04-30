@@ -7,6 +7,8 @@ NProgress.configure({ showSpinner: false })
 const req = axios.create({
     baseURL:'http://106.13.215.188:8089',
     // baseURL:'http://localhost:8089',
+    // baseURL:'http://192.168.1.5:8089',
+
     timeout: 7000
 })
 //请求拦截器

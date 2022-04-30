@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '../components/index/Index'
 import Login from '../components/login/Login'
 import Reg from '../components/reg/Reg'
+import CateChild from '../components/cate/CateChild'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/reg',
       name: 'Reg',
       component: Reg,
+    },
+    {
+      path: '/cateChild/:id',
+      name: 'CateChild',
+      component: CateChild,
     }
   ]
 })

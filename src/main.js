@@ -10,7 +10,7 @@ import { Spinner } from 'mint-ui';
 
 //组件
 import Mint from 'mint-ui';
-import { Toast } from 'mint-ui';
+import 'mint-ui/lib/style.css'
 import vuePicturePreview from 'vue-picture-preview'
 import 'viewerjs/dist/viewer.css'
 import Viewer from 'v-viewer'
