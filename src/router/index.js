@@ -4,6 +4,9 @@ import Index from '../components/index/Index'
 import Login from '../components/login/Login'
 import Reg from '../components/reg/Reg'
 import CateChild from '../components/cate/CateChild'
+import FeatCateChild from '../components/cate/FeatCateChild'
+
+import Collection from '../components/Collection/Collection.vue'
 
 Vue.use(Router)
 
@@ -28,6 +31,16 @@ export default new Router({
       path: '/cateChild/:id',
       name: 'CateChild',
       component: CateChild,
+    },
+    {
+      path: '/featCateChild/:id',
+      name: 'FeatCateChild',
+      component: FeatCateChild,
+    },
+    {
+      path: '/collection',
+      name: 'Collection',
+      component: Collection,
     }
   ]
 })

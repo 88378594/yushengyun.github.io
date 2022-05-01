@@ -58,7 +58,9 @@ export default {
             let params={
               imgId : this.pic_info.imgId,
               imgName : this.pic_info.imgName,
-              userId : localStorage.getItem("userId")
+              userId : localStorage.getItem("userId"),
+              imgType : this.pic_info.imgType,
+              auThor:this.pic_info.auThor
             }
             //发送请求，请求后端收藏接口
             req.post("/addLove",params).then((res) => {
@@ -89,7 +91,9 @@ export default {
             let params={
               imgId : this.pic_info.imgId,
               imgName : this.pic_info.imgName,
-              userId : localStorage.getItem("userId")
+              userId : localStorage.getItem("userId"),
+              imgType : this.pic_info.imgType,
+              auThor:this.pic_info.auThor
             }
             // 请求后端，取消收藏接口
             req.post("/delLove",params).then((res) => {

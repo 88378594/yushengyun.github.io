@@ -1,13 +1,37 @@
 <template>
     <div>
-        <ul class="wallpaper_list"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+        <ul v-if="imgType=='1'" class="wallpaper_list"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
         <!-- 循环图片列表 -->
-          <li v-for="(item,index) in list" v-viewer :key="index">
+        <template v-for="(item,index) in list">
+          <li v-viewer :key="index" v-if="item.show">
               <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
               <!-- 收藏工具条 -->
               <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
           </li>
+        </template>
+        </ul>
+        <ul v-if="imgType=='2'" class="wallpaper_list2"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+            <!-- 循环图片列表 -->
+            <template v-for="(item,index) in list">
+            <li v-viewer :key="index" v-if="item.show">
+                <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
+                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
+                <!-- 收藏工具条 -->
+                <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
+            </li>
+            </template>
+        </ul>
+         <ul v-if="imgType=='3'" class="wallpaper_list3"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+            <!-- 循环图片列表 -->
+            <template v-for="(item,index) in list">
+            <li v-viewer :key="index" v-if="item.show">
+                <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
+                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
+                <!-- 收藏工具条 -->
+                <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
+            </li>
+            </template>
         </ul>
         <!-- 数据加载中动图 -->
         <p class="wallpaper_list_loading" v-show="isLoadShow">
@@ -31,19 +55,19 @@ export default {
         return {
             list : [],
             pageNo : 1,
-            pageSize :9,
+            pageSize :4,
             isLoadShow : true,
             loading : false,
             loaded : false,
             backTop: false
         };
     },
-    props:["sortId","sortChildId"],
+    props:["imgType"],
     components:{
       TipTools,
     },
     mounted(){
-        console.log(this.sortId,this.sortChildId,"发送参数");
+      console.log(this.imgType,"发送参数");
       const tk = localStorage.getItem("userName");
       if (!tk) {
         pxmu.toast({
@@ -91,7 +115,12 @@ export default {
         if (!this.loading){
           this.loading = true;
           setTimeout(() => {
-              req.post("/selectCateImg",{sortId:this.sortId,sortChildId:this.sortChildId,pageNo:this.pageNo,pageSize:this.pageSize}).then((res) => {
+              req.post("/selectImgLove",{
+                "userId":localStorage.getItem("userId"),
+                "imgType":this.imgType,
+                "pageNo":this.pageNo,
+                "pageSize":this.pageSize
+            }).then((res) => {
               if (res.data.length == 1){
                 this.loaded = true;
                 this.isLoadShow = false;
@@ -154,8 +183,61 @@ export default {
   list-style-type: none;
 }
 
-.wallpaper_list li{
+.wallpaper_list2{
+  /* padding-left: 0.2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  /* padding-right: 0.2rem; */
+  text-align: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+.wallpaper_list2 li{
   width: 49%;
+  /* transition: 0.5s; */
+  /* height: 5rem; */
+  /* margin: 0 auto; */
+  margin-top: 0.2rem;
+}
+
+.wallpaper_list2 li img{
+  /* transition: 1s; */
+  /* display: block; */
+  width: 100%;
+  height: 7rem;
+  border-top-left-radius: 0.15rem;
+  border-top-right-radius: 0.15rem;
+}
+
+
+.wallpaper_list3{
+  /* padding-left: 0.2rem; */
+  display: flex;
+  flex-wrap: wrap;
+  /* padding-right: 0.2rem; */
+  text-align: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+.wallpaper_list3 li{
+  width: 20%;
+  /* transition: 0.5s; */
+  /* height: 5rem; */
+  /* margin: 0 auto; */
+  margin-top: 0.2rem;
+}
+
+.wallpaper_list3 li img{
+  /* transition: 1s; */
+  /* display: block; */
+  width: 100%;
+  height: 7rem;
+  border-top-left-radius: 0.15rem;
+  border-top-right-radius: 0.15rem;
+}
+
+.wallpaper_list li{
+  width: 100%;
   /* transition: 0.5s; */
   /* height: 5rem; */
   /* margin: 0 auto; */
@@ -166,7 +248,7 @@ export default {
   /* transition: 1s; */
   /* display: block; */
   width: 100%;
-  height: 7rem;
+  height: 6rem;
   border-top-left-radius: 0.15rem;
   border-top-right-radius: 0.15rem;
 }
@@ -194,6 +276,18 @@ export default {
 }
 
 .wallpaper_list li img[lazy=loading] {
+  transition: none !important;
+  width: 0.5rem !important;
+  margin: auto;
+}
+
+.wallpaper_list2 li img[lazy=loading] {
+  transition: none !important;
+  width: 0.5rem !important;
+  margin: auto;
+}
+.wallpaper_list3 li img[lazy=loading] {
+  transition: none !important;
   width: 0.5rem !important;
   margin: auto;
 }

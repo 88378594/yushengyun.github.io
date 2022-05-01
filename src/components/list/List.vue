@@ -168,8 +168,8 @@ export default {
   /* display: block; */
   width: 100%;
   height: 6rem;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
 }
 
 .wallpaper_list_loading {

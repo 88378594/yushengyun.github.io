@@ -7,7 +7,7 @@
           <img style="width:0.7rem" src="../../assets/img/loading.gif" alt="">
         </p>
         <div class="box_cont">
-            <div class="box_nr" v-for="(item,index) in featCateList" :key="index" @click="selectFeatList()">
+            <div class="box_nr" v-for="(item,index) in featCateList" :key="index" @click="selectFeatList(item.featCateId)">
                 <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
                 <p>
                     {{item.featCateName}}
@@ -65,17 +65,8 @@ export default {
         Search
     },
     methods: {
-        selectFeatList(){
-            pxmu.toast({
-                msg: "敬请期待...", //内容 不能为空
-                time: 2500, //停留时间 默认2500毫秒
-                bg: "rgba(0, 0, 0, 0.86)", //背景颜色 默认黑色
-                color: "#fff", //文字颜色 默认白色
-                location: "", //居中center 顶部top 底部bottom默认
-                animation: "slidedown", //显示的动画 默认fade 动画支持详见动画文档
-                type: "wap", //默认wap样式 可选参数：pc 入参pc时
-                status: "", //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
-            });
+        selectFeatList(featCateId){
+            this.$router.push({name:'FeatCateChild',params:{id:featCateId}});
         },
         selectCateChildList(cateId){
             this.$router.push({name:'CateChild',params:{id:cateId}});
@@ -105,7 +96,7 @@ export default {
 <style scoped>
 .img{
     width: 100%;
-    height: 3.3rem;
+    height: 3.8rem;
     border-top-left-radius: 0.15rem;
     border-top-right-radius: 0.15rem;
 
@@ -119,7 +110,7 @@ export default {
     width: 100%;
     margin-left: 0.07rem;
     /* display: flex; */
-    height: 4.4rem;
+    /* height: 4.4rem; */
     display: -webkit-box;
     overflow-x: auto;
     white-space: nowrap;
@@ -132,7 +123,7 @@ export default {
     background-color: #5a697a;
     border-radius: 0.15rem;
     flex-wrap: wrap;
-    height: 4rem;
+    /* height: 4rem; */
     /* align-items:flex-end; */
     margin-right: 0.2rem;
 }

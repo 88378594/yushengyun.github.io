@@ -42,16 +42,16 @@ export default {
     }();
     console.log(deviceBrowser);
     if(deviceBrowser.mobile!=true){
-        pxmu.toast({
-            msg: "当前为PC端 本站为移动端，不建议PC使用!", //内容 不能为空
-            time: 5000, //停留时间 默认2500毫秒
-            bg: 'rgba(0, 0, 0, 0.36)', //背景颜色 默认黑色
-            color: '#fff', //文字颜色 默认白色
-            location: 'center',//居中center 顶部top 底部bottom默认
-            animation: 'slidedown', //显示的动画 默认fade 动画支持详见动画文档
-            type: 'pc', //默认wap样式 可选参数：pc 入参pc时
-            status: 'error', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
-        });
+        // pxmu.toast({
+        //     msg: "当前为PC端 本站为移动端，不建议PC使用!", //内容 不能为空
+        //     time: 5000, //停留时间 默认2500毫秒
+        //     bg: 'rgba(0, 0, 0, 0.36)', //背景颜色 默认黑色
+        //     color: '#fff', //文字颜色 默认白色
+        //     location: 'center',//居中center 顶部top 底部bottom默认
+        //     animation: 'slidedown', //显示的动画 默认fade 动画支持详见动画文档
+        //     type: 'pc', //默认wap样式 可选参数：pc 入参pc时
+        //     status: 'error', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
+        // });
     }else if(deviceBrowser.android==true){
           // pxmu.toast({
           //     msg: "当前为Android端 请放心使用 如遇BUG 及时联系", //内容 不能为空
@@ -64,18 +64,18 @@ export default {
           //     status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
           // });
     }else{
-         if(deviceBrowser.ios=true){
-            pxmu.toast({
-                msg: "当前为IOS端 可能出现BUG 请及时反馈", //内容 不能为空
-                time: 4000, //停留时间 默认2500毫秒
-                bg: 'rgba(0, 0, 0, 0.36)', //背景颜色 默认黑色
-                color: '#fff', //文字颜色 默认白色
-                location: '',//居中center 顶部top 底部bottom默认
-                animation: 'slidedown', //显示的动画 默认fade 动画支持详见动画文档
-                type: 'wap', //默认wap样式 可选参数：pc 入参pc时
-                status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
-            });
-        }
+        //  if(deviceBrowser.ios=true){
+        //     pxmu.toast({
+        //         msg: "当前为IOS端 可能出现BUG 请及时反馈", //内容 不能为空
+        //         time: 4000, //停留时间 默认2500毫秒
+        //         bg: 'rgba(0, 0, 0, 0.36)', //背景颜色 默认黑色
+        //         color: '#fff', //文字颜色 默认白色
+        //         location: '',//居中center 顶部top 底部bottom默认
+        //         animation: 'slidedown', //显示的动画 默认fade 动画支持详见动画文档
+        //         type: 'wap', //默认wap样式 可选参数：pc 入参pc时
+        //         status: '', //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
+        //     });
+        // }
     } 
 },
   }

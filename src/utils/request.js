@@ -14,7 +14,7 @@ const req = axios.create({
 //请求拦截器
 req.interceptors.request.use(
     config => {
-        NProgress.start();
+        // NProgress.start();
         return config;
     },
     error => {
@@ -36,7 +36,7 @@ req.interceptors.request.use(
 //响应拦截器
 req.interceptors.response.use(
     response => {
-        NProgress.done();
+        // NProgress.done();
         return response.data;
     },
     error => {

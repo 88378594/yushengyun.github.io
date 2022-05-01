@@ -65,7 +65,7 @@ export default {
 .swiper-container {
 	margin-top: 0.1rem;
 	height: 6rem;
-	border-radius: 0.5rem;
+	border-radius: 0.2rem;
 	width: 100%;
 	margin-bottom: 0.7rem;
 }

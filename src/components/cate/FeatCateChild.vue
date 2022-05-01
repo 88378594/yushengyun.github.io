@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import CateList from "@/components/list/CateList.vue";
+import CateList from "@/components/list/FeatCateList.vue";
 import req from "@/utils/request";
 export default {
   name: "Catechild",
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       active: "", //通过这个绑定要显示的内容
-      cateId: this.$route.params.id, //父分类id
+      featCateId: this.$route.params.id, //父分类id
       sortId:null,
       sortChildId:null,
       cateChildList: [],
@@ -56,7 +56,7 @@ export default {
   },
   watch: {
     active(newValue) {
-        this.sortId=this.cateId
+        this.sortId=this.featCateId
         this.sortChildId=newValue
         console.log(newValue, "监听器");
     },
@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     //cha分类
-    req.post("/selectCateChild", { cateId: this.cateId }).then((res) => {
+    req.post("/selectFeatCateChild",{ featCateId: this.featCateId }).then((res) => {
       console.log(res);
       this.cateChildList = res.data;
       this.$nextTick(()=>{
@@ -114,7 +114,7 @@ export default {
   white-space: nowrap;
 }
 .cateChild div {
-  width: 12.6%;
+  width: 26.6%;
   margin-right: 0.3rem;
   line-height: 1.2rem;
   font-size: 0.35rem;

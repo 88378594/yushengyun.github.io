@@ -2,18 +2,18 @@
   <div class="box">
     <div class="header">
       <i @click="$router.push({ path: '/' })" class="iconfont icon-fanhui"></i>
-      <input type="text" placeholder="搜索喜欢的壁纸、专辑、用户" />
+      <b>我的收藏</b>
     </div>
     <div style="height: 1.5rem"></div>
     <div style="padding: 0.2rem">
       <div class="cateChild">
         <div
-          v-for="item in cateChildList"
-          :key="item.childId + ''"
-          :class="{ cateChild_border: active == item.childId + '' }"
-          @click="active = item.childId+''"
+          v-for="item in featCateList"
+          :key="item.featCateId + ''"
+          :class="{ cateChild_border: active == item.featCateId + '' }"
+          @click="active = item.featCateId+''"
         >
-          {{ item.childName }}
+          {{ item.featCateName }}
         </div>
       </div>
       <mt-tab-container
@@ -23,13 +23,12 @@
         swipeable
       >
         <mt-tab-container-item
-          v-for="item in cateChildList"
-          :key="'' + item.childId + ''"
-          :id="'' + item.childId + ''"
+          v-for="item in featCateList"
+          :key="'' + item.featCateId + ''"
+          :id="'' + item.featCateId + ''"
         >
           <div class="nav_box">
-            <CateList :sortId="sortId" :sortChildId="sortChildId" v-if="active==''+item.childId+''" />
-            <!-- {{ item.childName }} -->
+            <CollectionChild :imgType="imgType" v-if="active==item.featCateId+''" />
           </div>
         </mt-tab-container-item>
       </mt-tab-container>
@@ -40,35 +39,33 @@
 </template>
 
 <script>
-import CateList from "@/components/list/CateList.vue";
+import CollectionChild from "@/components/Collection/CollectionChild.vue";
 import req from "@/utils/request";
 export default {
-  name: "Catechild",
+  name: "Collection",
 
   data() {
     return {
       active: "", //通过这个绑定要显示的内容
-      cateId: this.$route.params.id, //父分类id
-      sortId:null,
-      sortChildId:null,
-      cateChildList: [],
+      imgType:"",
+      featCateList: [],
     };
   },
   watch: {
     active(newValue) {
-        this.sortId=this.cateId
-        this.sortChildId=newValue
-        console.log(newValue, "监听器");
+        this.$nextTick(()=>{
+            this.imgType=newValue
+        })
+      console.log(newValue, "监听器");
     },
-       
   },
   mounted() {
     //cha分类
-    req.post("/selectCateChild", { cateId: this.cateId }).then((res) => {
+    req.post("/selectFeatCate").then((res) => {
       console.log(res);
-      this.cateChildList = res.data;
+      this.featCateList = res.data;
       this.$nextTick(()=>{
-          this.active = res.data[0].childId + "";
+          this.active = res.data[0].featCateId + "";
       })
     });
 
@@ -80,7 +77,7 @@ export default {
     console.log(this.active, "当前值");
   },
   components: {
-    CateList,
+    CollectionChild,
   },
   methods: {},
 };
@@ -89,12 +86,10 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 1.5rem;
   line-height: 1.5rem;
+  /* justify-content: space-around; */
+  height: 1.5rem;
   background-color: #414a54;
-  display: flex;
   position: fixed;
   font-size: 0.45rem;
   top: 0;
@@ -114,7 +109,7 @@ export default {
   white-space: nowrap;
 }
 .cateChild div {
-  width: 12.6%;
+  width: 20%;
   margin-right: 0.3rem;
   line-height: 1.2rem;
   font-size: 0.35rem;
@@ -134,6 +129,10 @@ export default {
 i {
   font-size: 0.55rem !important;
   float: left;
+  margin-left: 0.4rem;
+}
+b{
+    margin-left: -0.5rem;
 }
 .box_nr {
   width: 10%;
@@ -150,7 +149,7 @@ i {
   /* padding: 0.2rem; */
 }
 input {
-  width: 90%;
+  width: 85%;
   height: 0.9rem;
   text-align: center;
   background: rgb(215 226 231);
