@@ -7,9 +7,13 @@
         <!-- 循环图片列表 -->
        
           <li v-for="(item,index) in list" v-viewer :key="index">
-              <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
-               <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
-              <!-- 收藏工具条 -->
+              <div style="height:6rem">
+
+              
+                <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
+                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
+                <!-- 收藏工具条 -->
+              </div>
               <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
           </li>
         </ul>
@@ -157,17 +161,17 @@ export default {
 
 .wallpaper_list li{
   width: 100%;
-  /* transition: 0.5s; */
   height: 7rem;
   margin: 0 auto;
   margin-top: 0.2rem;
 }
 
 .wallpaper_list li img{
-  /* transition: 1s; */
+  /* transition: 0.5s; */
   /* display: block; */
   width: 100%;
   height: 6rem;
+  object-fit: cover;
   border-top-left-radius: 0.2rem;
   border-top-right-radius: 0.2rem;
 }
@@ -195,8 +199,11 @@ export default {
 }
 
 .wallpaper_list li img[lazy=loading] {
-  transition: none !important;
   width: 0.5rem !important;
+  height: 0.5rem !important;
+  position: relative;
+  top: 50%;
+  size: 10%;
   margin: auto;
 }
 </style>

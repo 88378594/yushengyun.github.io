@@ -8,7 +8,9 @@
         </p>
         <div class="box_cont">
             <div class="box_nr" v-for="(item,index) in featCateList" :key="index" @click="selectFeatList(item.featCateId)">
-                <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
+                <div style="width:100%;height:3.5rem">
+                     <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
+                </div>
                 <p>
                     {{item.featCateName}}
                 </p>
@@ -18,7 +20,9 @@
          <p class="cate_font">更多分类</p>
          <div class="box_contx">
             <div class="box_nr" v-for="(item,index) in cateList" :key="index" @click="selectCateChildList(item.cateId)" >
+                <div style="width:100%;height:3.5rem">
                  <img class="img" v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" alt="">
+                </div>
                 <p>
                     {{item.cateName}}
                 </p>
@@ -96,14 +100,19 @@ export default {
 <style scoped>
 .img{
     width: 100%;
-    height: 3.8rem;
+    height: 3.5rem;
+    object-fit: cover;
     border-top-left-radius: 0.15rem;
     border-top-right-radius: 0.15rem;
 
 }
 .img[lazy=loading] {
-  transition: none !important;
   width: 0.5rem !important;
+  height: 0.5rem;
+  position: relative;
+  top: 50%;
+  left: 40%;
+  size: 10%;
   margin: auto;
 }
 .box_cont{

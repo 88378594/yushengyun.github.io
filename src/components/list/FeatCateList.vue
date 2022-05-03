@@ -1,24 +1,28 @@
 <template>
     <div>
-        <ul v-if="sortId=='1'" class="wallpaper_list"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+        <ul v-show="sortId=='1'" class="wallpaper_list"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
         <!-- 循环图片列表 -->
           <li v-for="(item,index) in list" v-viewer :key="index">
+            <div style="height:6rem">
               <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
                <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
+            </div>
               <!-- 收藏工具条 -->
               <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
           </li>
         </ul>
-        <ul v-if="sortId=='2'" class="wallpaper_list2"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+        <ul v-show="sortId=='2'" class="wallpaper_list2"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
           <!-- 循环图片列表 -->
           <li v-for="(item,index) in list" v-viewer :key="index">
+            <div style="height:7rem">
               <img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
                 <!-- v-preview="'http://106.13.215.188:8080/img/'+item.imgName" -->
+            </div>
               <!-- 收藏工具条 -->
               <TipTools :picInfo="item"><span slot="tips_text" class="tips_text">{{ item.auThor }}</span></TipTools>
           </li>
         </ul>
-         <ul v-if="sortId=='3'" class="wallpaper_list3"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
+         <ul v-show="sortId=='3'" class="wallpaper_list3"  v-infinite-scroll="loadMore" infinite-scroll-disabled="loaded">
             <!-- 循环图片列表 -->
             <template v-for="(item,index) in list">
             <li v-viewer :key="index" v-if="item.show">
@@ -187,6 +191,7 @@ export default {
   /* display: block; */
   width: 100%;
   height: 6rem;
+  object-fit: cover;
   border-top-left-radius: 0.15rem;
   border-top-right-radius: 0.15rem;
 }
@@ -221,12 +226,17 @@ export default {
   /* display: block; */
   width: 100%;
   height: 7rem;
+  object-fit: cover;
   border-top-left-radius: 0.15rem;
   border-top-right-radius: 0.15rem;
 }
 .wallpaper_list2 li img[lazy=loading] {
   transition: none !important;
   width: 0.5rem !important;
+  position: relative;
+  top: 50%;
+  height: 0.5rem;
+  size: 10%;
   margin: auto;
 }
 .wallpaper_list3{
@@ -251,12 +261,17 @@ export default {
   /* display: block; */
   width: 100%;
   height: 7rem;
+  object-fit: cover;
   border-top-left-radius: 0.15rem;
   border-top-right-radius: 0.15rem;
 }
 .wallpaper_list3 li img[lazy=loading] {
   transition: none !important;
   width: 0.5rem !important;
+  position: relative;
+  top: 50%;
+  height: 0.5rem;
+  size: 10%;
   margin: auto;
 }
 .wallpaper_list_loading div {
@@ -274,6 +289,10 @@ export default {
 
 .wallpaper_list li img[lazy=loading] {
   width: 0.5rem !important;
+  height: 0.5rem;
+  position: relative;
+  top: 50%;
+  size: 10%;
   margin: auto;
 }
 </style>

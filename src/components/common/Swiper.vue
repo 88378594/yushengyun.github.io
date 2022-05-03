@@ -5,7 +5,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" v-viewer v-for="(item,index) in List" :key="index">
 					<!-- <img :src="'http://106.13.215.188:8080/img/'+item.imgName"> -->
-            		<img v-lazy="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
+            		<img :src="'http://106.13.215.188:8080/img/'+item.imgName" :alt="item.auThor">
 
 				</div>
 				<!-- <div class="swiper-slide">Slide 2</div>
@@ -79,6 +79,10 @@ export default {
 .swiper-slide img{
 	width: 100%;
 	height: 6rem;
+	background: url("../../assets/img/loading.gif") no-repeat;
+	background-position:center center;
+	background-size: 10%;
+	object-fit: cover;
 }
 
 .swiper-slide img[lazy=loading] {

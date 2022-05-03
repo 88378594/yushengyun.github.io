@@ -6,11 +6,11 @@
       {{ title }}
     </div>
         <!-- 首页组件 -->
-        <List v-if="title == '首页'"></List>
+        <List v-show="title == '首页'"></List>
         <!-- 分类组件 -->
-        <Cate v-if="title == '分类'"></Cate>
+        <Cate v-show="title == '分类'"></Cate>
         <!-- 我的组件 -->
-        <My v-if="title == '我的'"></My>
+        <My v-show="title == '我的'"></My>
     <!-- 底部 -->
     <div class="bottom">
       <i
