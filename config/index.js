@@ -11,18 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
-        target:`http://106.13.215.188:8080`, //请求后台接口
-        changeOrigin:true, // 允许跨域
-//这是签名认证，http和https区分的参数设置
-        pathRewrite:{
-            '^/api' : '' // 重写请求
-        }
-      }
+//       '/api':{
+//         target:`http://192.168.1.5:8089`, //请求后台接口
+//         changeOrigin:true, // 允许跨域
+// //这是签名认证，http和https区分的参数设置
+//         pathRewrite:{
+//             '^/api' : '' // 重写请求
+//         }
+//       }
     },
 
     // Various Dev Server settings
-    host: '192.168.1.5', // can be overwritten by process.env.HOST
+    host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

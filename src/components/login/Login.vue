@@ -36,12 +36,12 @@ export default {
     },
 
     mounted() {
-        const tk = localStorage.getItem("userName");
-            if (!tk) {
+        // const tk = localStorage.getItem("userName");
+        //     if (!tk) {
             
-            }else{
-                this.$router.push("/");
-            } 
+        //     }else{
+        //         this.$router.push("/");
+        //     } 
          $(".fakeloader").fakeLoader({
             timeToHide:700,
             bgColor:"#34495e",

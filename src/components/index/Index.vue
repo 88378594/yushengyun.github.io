@@ -6,11 +6,11 @@
       {{ title }}
     </div>
         <!-- 首页组件 -->
-        <List v-show="title == '首页'"></List>
+        <List v-if="title == '首页'"></List>
         <!-- 分类组件 -->
         <Cate v-show="title == '分类'"></Cate>
         <!-- 我的组件 -->
-        <My v-show="title == '我的'"></My>
+        <My v-if="title == '我的'"></My>
     <!-- 底部 -->
     <div class="bottom">
       <i
@@ -60,17 +60,7 @@ export default {
     }
     const tk = localStorage.getItem("userName");
     if (!tk) {
-      pxmu.toast({
-        msg: "当前未登录", //内容 不能为空
-        time: 2500, //停留时间 默认2500毫秒
-        bg: "rgba(0, 0, 0, 0.86)", //背景颜色 默认黑色
-        color: "#fff", //文字颜色 默认白色
-        location: "", //居中center 顶部top 底部bottom默认
-        animation: "slidedown", //显示的动画 默认fade 动画支持详见动画文档
-        type: "wap", //默认wap样式 可选参数：pc 入参pc时
-        status: "", //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
-      });
-      // this.$router.push("/login");
+      localStorage.love = []
     } else {
      
     }

@@ -58,7 +58,8 @@ export default {
     },
     loveIt(){
       const tk = localStorage.getItem("userName");
-      if (!tk) {
+       const tk2 = localStorage.getItem("userId");
+        if (!tk||!tk2) {
         pxmu.toast({
           msg: "当前未登录", //内容 不能为空
           time: 3000, //停留时间 默认2500毫秒
@@ -69,7 +70,7 @@ export default {
           type: "wap", //默认wap样式 可选参数：pc 入参pc时
           status: "", //可选参数 success成功 warn警告 error错误 仅在type=pc时候生效，wap时可通过自定义bg、color改变样式
         });
-        this.$router.push("/login");
+        // this.$router.push("/login");
       }else{
             if (!this.pic_info.show){
             //收藏
